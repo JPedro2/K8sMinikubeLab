@@ -2,27 +2,13 @@
 
 
 ## 0. Goals
-The goals of this lab are for you to configure ```kubectl``` to communicate with the big kubernetes cluster.  Then you will run a few basic kubectl commands to show key concepts. This lab seeks to be a gentle introduction to kubernetes.  
+The goals of this lab are for you to use ```kubectl``` to communicate with your local instance of kubernetes as if it was a big kubernetes cluster. You will run a few basic kubectl commands to show key concepts. This lab seeks to be a gentle introduction to kubernetes.  
 
-## 1. Setup Kubectl
+## 1. working with Kubectl
 
-### 1.1 Grab the certificate file
-```
-cp /tmp/ca.pem . 
-```
+### 1.1. Set the ```NAMESPACE```
 
-### 1.2. Set local environment variables
-Set the environment variables you'll need for this lab: 
-
-```
-export CLUSTER_IP=<clusterip>
-export TOKEN=<token>
-```
-The values for these variables are in the spark room.
-
-### 1.3. Set the ```NAMESPACE```
-
-In this lab, every user will use their own namespace so as not to clobber other users.  Set the namespace by running the command: 
+In this lab, you are running locally but if you were connected to a shared cluster you will need a way to see your workloads and only your workloads. This is done via namespace so that every user will use their own namespace and not clobber other users.  Set the namespace by running the command: 
 
 ```
 export NAMESPACE=<yournamespace>
@@ -35,7 +21,7 @@ As an example, If my name were Captain Cloud and I was user ```user68```, then I
 Be sure your namespace is ALL lowercase characters. **DO NOT USE UPPERCASE.** It is OK to run the same command with a correct unique namespace now.
 
 
-### 1.4. Configure ```kubectl```
+### 1.2. Configure ```kubectl```
 
 After running each of the below commands you may wish to run ```cat ~/.kube/config```.  (If you run it now it will fail because no file has been created yet!) You'll see that these next set of commands will modify that file.  ```kubectl``` looks in that file for how to target the appropriate kubernetes cluster. 
 
