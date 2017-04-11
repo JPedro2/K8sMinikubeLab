@@ -6,70 +6,7 @@ The goals of this lab are for you to use ```kubectl``` to communicate with your 
 
 ## 1. working with Kubectl
 
-### 1.1. Set the ```NAMESPACE```
-
-In this lab, you are running locally but if you were connected to a shared cluster you will need a way to see your workloads and only your workloads. This is done via namespace so that every user will use their own namespace and not clobber other users.  Set the namespace by running the command: 
-
-```
-export NAMESPACE=<yournamespace>
-```
-
-Where ```<yournamespace>``` is a combination of your initials plus your lab number: ```<username><your initials>```
-
-As an example, If my name were Captain Cloud and I was user ```user68```, then I would run the command: ```export NAMESPACE=user68cc```
-
-Be sure your namespace is ALL lowercase characters. **DO NOT USE UPPERCASE.** It is OK to run the same command with a correct unique namespace now.
-
-
-### 1.2. Configure ```kubectl```
-
-After running each of the below commands you may wish to run ```cat ~/.kube/config```.  (If you run it now it will fail because no file has been created yet!) You'll see that these next set of commands will modify that file.  ```kubectl``` looks in that file for how to target the appropriate kubernetes cluster. 
-
-#### Define the cluster
-```
-kubectl config set-cluster sevt --server="https://$CLUSTER_IP/" --certificate-authority=ca.pem --embed-certs=true
-```
-
-#### Enter user credentials
-```
-kubectl config set-credentials admin --token $TOKEN
-```
-
-#### Set the default-context to our cluster
-
-```
-kubectl config set-context default-context --cluster=sevt --user=admin
-```
-
-#### Use the default-context
-```
-kubectl config use-context default-context
-```
-
-#### Set the default namespace to be our namespace
-
-```
-kubectl config set-context default-context --namespace=$NAMESPACE
-```
-
-#### Checkpoint 
-
-At this point all the commands you have run modified the ```~/.kube/config``` file.  If you have done everything correctly, you should be able to see all the nodes.  Try running: 
-
-```
-kubectl get nodes
-```
-
-If you see all the nodes of the cluster give yourself a pat on the back!  You are doing great things!  If it didn't work, please let the proctors know. 
-
-#### Create the namespace on the kubernetes cluster
-
-__IMPORTANT:__ Because there multiple people running on the same cluster, every user needs to run in their own namespace.  You created the default namespace above in your ```~/.kube/config``` file, but now you need to actually create that namespace on the kubernetes cluster:
-
-```
-kubectl create namespace $NAMESPACE
-```
-
+Go straight to the next section! 
 ## 2. Test Drive ```kubectl```
 
 You are now ready to interact with the cluster.  Try a few commands.
