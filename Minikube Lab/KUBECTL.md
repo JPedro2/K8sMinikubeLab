@@ -6,6 +6,7 @@ The goals of this lab are for you to use ```kubectl``` to communicate with your 
 
 ## 1. working with Kubectl
 
+<<<<<<< HEAD
 ### 1.1. Set the ```NAMESPACE```
 
 In this lab, you are running locally but if you were connected to a shared cluster you will need a way to see your workloads and only your workloads. This is done via namespace so that every user will use their own namespace and not clobber other users.  Set the namespace by running the command: 
@@ -31,6 +32,9 @@ __IMPORTANT:__ Because there multiple people running on the same cluster, every 
 kubectl create namespace $NAMESPACE
 ```
 
+=======
+Go straight to the next section! 
+>>>>>>> origin/master
 ## 2. Test Drive ```kubectl```
 
 You are now ready to interact with the cluster.  Try a few commands.
