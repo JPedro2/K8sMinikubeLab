@@ -45,7 +45,7 @@ The frontend will be accessible by anyone on the Internet. The frontend then int
 
 The frontend will be communicating with the redis-master to store and retrieve data.
 
-The redis-master deployment file can be found in the [04-Running/guestbook/](https://github.com/CiscoCloud/k8sclass/tree/master/04-Running/guestbook) folder of this repository.
+The redis-master deployment file can be found in [files/guestbook/](https://github.com/chrijack/K8sMinikubeLab/tree/master/files/guestbook) folder of this repository.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -99,7 +99,7 @@ Examining this deployment file we notice a few things:
 Create the deployment with the following command:
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/CiscoCloud/k8sclass/master/04-Running/guestbook/redis-master-deployment.yaml
+kubectl create -f https://raw.githubusercontent.com/chrijack/K8sMinikubeLab/master/files/guestbook/redis-master-deployment.yaml
 ```
 
  We can confirm our redis-master was deployed successfully by running some additional commands:
@@ -129,7 +129,7 @@ kubectl logs redis-master-<some-random-string>
 
 As it stands, redis-master has been deployed to a single pod which contains an IP. If there is an issue with this pod, the replication controller will ensure that it spins up again. However, it could now spin up in a different pod or even on a different host. This will result in a new IP address. Because we will have other components talking to this, we can create a service so that other components can reach this service via its service name. This ensures that we always have a way to talk to it.
 
-We already have a [redis-master-service.yaml](https://github.com/CiscoCloud/k8sclass/blob/master/04-Running/guestbook/redis-master-service.yaml) for you:
+We already have a [redis-master-service.yaml](https://github.com/chrijack/K8sMinikubeLab/tree/master/files/guestbook/redis-master-service.yaml) for you:
 
 ```yaml
 apiVersion: v1
@@ -157,7 +157,7 @@ Note this service file is pretty simple. Its kind is a service with a name of <b
 Create this service using the command below (similar to how we created the deployment)
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/CiscoCloud/k8sclass/master/04-Running/guestbook/redis-master-service.yaml
+kubectl create -f https://raw.githubusercontent.com/chrijack/K8sMinikubeLab/master/files/guestbook/redis-master-service.yaml
 ```
 
 
@@ -168,7 +168,7 @@ Since we are building a cloudy guestbook, we want to do everything we can do to 
 
 Similar to the redis-master deployment, we already have a deployment file for the redis-slave.
 
-Examine [redis-slave.yaml](https://github.com/CiscoCloud/k8sclass/blob/master/04-Running/guestbook/redis-slave.yaml) closely.
+Examine [redis-slave.yaml](https://github.com/chrijack/K8sMinikubeLab/tree/master/files/guestbook/redis-slave.yaml) closely.
 
 Hopefully you noticed a few things:
 
@@ -179,7 +179,7 @@ Hopefully you noticed a few things:
 You are almost a pro at this, go ahead and create the redis-slave service as shown below:
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/CiscoCloud/k8sclass/master/04-Running/guestbook/redis-slave.yaml
+kubectl create -f https://raw.githubusercontent.com/chrijack/K8sMinikubeLab/master/files/guestbook/redis-slave.yaml
 ```
 
 Notice how both a service and deployment were both created for us!
@@ -193,12 +193,12 @@ You may see that some of the containers are still being created.  Be patient and
 
 ## 4. Frontend Deployment
 
-For this guestbook example, we will use a simple PHP server that is configured to talk to redis-master or redis-slave depending if the action if a read or write. We will deploy 3 nginx web server pods in this environment using the [frontend.yaml](https://github.com/CiscoCloud/k8sclass/blob/master/04-Running/guestbook/frontend.yaml).
+For this guestbook example, we will use a simple PHP server that is configured to talk to redis-master or redis-slave depending if the action if a read or write. We will deploy 3 nginx web server pods in this environment using the [frontend.yaml](https://github.com/chrijack/K8sMinikubeLab/tree/master/files/guestbook/frontend.yaml).
 
 Configure the frontend as shown below:
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/CiscoCloud/k8sclass/master/04-Running/guestbook/frontend.yaml
+kubectl create -f https://raw.githubusercontent.com/chrijack/K8sMinikubeLab/master/files/guestbook/frontend.yaml
 ```
 
 Confirm that all componenta are up by listing the deployments and replicasets:
@@ -241,7 +241,7 @@ NodePort:		<unset>	31245/TCP
 ```
 This means that your service is now exposed to that port externally.
 
-<img src="../04-Running/images/exposeNodePort.png">
+<img src="../images/exposeNodePort.png">
 
 In this example, the NodePort is 31245.
 
@@ -254,7 +254,7 @@ Here ```<node IP>``` is a public IP address exposed from the kubernetes cluster.
 ```<your port>``` is the port you saw exposed in the previous section.  
 
 
-<img src="../04-Running/images/guestbookRunning.png">
+<img src="../images/guestbookRunning.png">
 
 
 You are done!  [Go back to main class page](README.md)
