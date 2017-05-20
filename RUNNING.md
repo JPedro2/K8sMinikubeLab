@@ -241,7 +241,7 @@ NodePort:		<unset>	31245/TCP
 ```
 This means that your service is now exposed to that port externally.
 
-<img src="../images/exposeNodePort.png">
+<img src="/images/exposeNodePort.png">
 
 In this example, the NodePort is 31245.
 
@@ -254,7 +254,7 @@ Here ```<node IP>``` is a public IP address exposed from the kubernetes cluster.
 ```<your port>``` is the port you saw exposed in the previous section.  
 
 
-<img src="../images/guestbookRunning.png">
+<img src="/images/guestbookRunning.png">
 
 
 You are done!  [Go back to main class page](README.md)
